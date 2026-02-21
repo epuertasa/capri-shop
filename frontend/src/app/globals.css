@@ -1,0 +1,216 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════════
+   Design Tokens — Capri Shop
+   Tailwind v4 · CSS-first via @theme
+   ═══════════════════════════════════════════════════════════════════ */
+@theme {
+
+  /* ── Colors ─────────────────────────────────────────────────────
+     blush / ink nunca se invierten como texto/fondo.
+     Contraste mínimo garantizado: todos los pares → AAA (≥ 7:1).
+     NUNCA usar blush como color de texto sobre fondo claro.
+  ────────────────────────────────────────────────────────────────── */
+  --color-blush:       #FFE0E9;   /* fondo, acentos            */
+  --color-blush-dark:  #F2B8CC;   /* hover, bordes             */
+  --color-ink:         #1A1A1A;   /* texto principal           */
+  --color-ink-muted:   #5A5A5A;   /* texto secundario  7.5:1   */
+  --color-ink-subtle:  #9A9A9A;   /* placeholders, decorativos */
+  --color-white:       #FFFFFF;   /* fondo base                */
+  --color-surface:     #FAFAFA;   /* fondo de sección alterna  */
+  --color-border:      #F0E0E6;   /* separadores suaves        */
+
+  /* ── Fuentes ─────────────────────────────────────────────────────
+     --font-playfair y --font-cormorant las inyecta next/font/google
+     en layout.tsx como CSS variables.
+  ────────────────────────────────────────────────────────────────── */
+  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-body:    var(--font-cormorant), "Times New Roman", serif;
+
+  /* ── Escala tipográfica fluida ────────────────────────────────────
+     clamp(mínimo-móvil, preferido-viewport, máximo-desktop)
+     Sin saltos bruscos al cambiar breakpoint.
+  ────────────────────────────────────────────────────────────────── */
+  --text-2xs:  0.625rem;                          /*  10px fijo  */
+  --text-xs:   0.75rem;                           /*  12px fijo  */
+  --text-sm:   0.875rem;                          /*  14px fijo  */
+  --text-base: 1rem;                              /*  16px fijo  */
+  --text-lg:   clamp(1.125rem, 1.8vw,  1.25rem); /* 18 → 20px   */
+  --text-xl:   clamp(1.25rem,  2.2vw,  1.5rem);  /* 20 → 24px   */
+  --text-2xl:  clamp(1.5rem,   2.8vw,  1.875rem);/* 24 → 30px   */
+  --text-3xl:  clamp(1.875rem, 3.5vw,  2.25rem); /* 30 → 36px   */
+  --text-4xl:  clamp(2.25rem,  4.5vw,  3rem);    /* 36 → 48px   */
+  --text-5xl:  clamp(3rem,     6vw,    4.5rem);  /* 48 → 72px   */
+  --text-6xl:  clamp(3.75rem,  8vw,    6rem);    /* 60 → 96px   */
+
+  /* ── Line heights ────────────────────────────────────────────── */
+  --leading-none:    1;
+  --leading-tight:   1.15;
+  --leading-snug:    1.3;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.7;
+  --leading-loose:   2;
+
+  /* ── Letter spacing ──────────────────────────────────────────── */
+  --tracking-tighter: -0.04em;
+  --tracking-tight:   -0.02em;
+  --tracking-normal:   0em;
+  --tracking-wide:     0.04em;
+  --tracking-wider:    0.08em;
+  --tracking-widest:   0.18em;
+
+  /* ── Border radius ───────────────────────────────────────────── */
+  --radius-xs:   0.25rem;
+  --radius-sm:   0.375rem;
+  --radius-md:   0.625rem;
+  --radius-lg:   1rem;
+  --radius-xl:   1.5rem;
+  --radius-2xl:  2rem;
+  --radius-full: 9999px;
+
+  /* ── Shadows ─────────────────────────────────────────────────── */
+  --shadow-xs:         0 1px 3px 0   rgb(0 0 0 / 0.04);
+  --shadow-sm:         0 2px 6px 0   rgb(0 0 0 / 0.06);
+  --shadow-md:         0 4px 16px 0  rgb(0 0 0 / 0.08);
+  --shadow-lg:         0 8px 32px 0  rgb(0 0 0 / 0.10);
+  --shadow-card:       0 2px 10px 0  rgb(0 0 0 / 0.06);
+  --shadow-card-hover: 0 8px 32px 0  rgb(0 0 0 / 0.12);
+  --shadow-blush:      0 4px 20px 0  rgb(242 184 204 / 0.40);
+
+  /* ── Transiciones & easing ───────────────────────────────────── */
+  --duration-fast:   150ms;
+  --duration-base:   200ms;
+  --duration-slow:   350ms;
+  --ease-out:        cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:     cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── Z-index ─────────────────────────────────────────────────── */
+  --z-base:    0;
+  --z-raised:  10;
+  --z-overlay: 20;
+  --z-modal:   30;
+  --z-sticky:  40;
+  --z-toast:   50;
+
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Base layer
+   ═══════════════════════════════════════════════════════════════════ */
+@layer base {
+
+  /* ── prefers-reduced-motion — WCAG 2.3.3 ────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration:        0.01ms !important;
+      animation-iteration-count: 1      !important;
+      transition-duration:       0.01ms !important;
+      scroll-behavior:           auto   !important;
+    }
+  }
+
+  /* ── HTML / Body ─────────────────────────────────────────────── */
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    font-size: 16px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-white);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    min-height: 100dvh;
+  }
+
+  /* ── Tipografía base ─────────────────────────────────────────── */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    line-height: var(--leading-tight);
+    color: var(--color-ink);
+    text-wrap: balance;         /* distribuye líneas de forma óptica */
+  }
+
+  p {
+    text-wrap: pretty;          /* evita líneas huérfanas            */
+    max-width: 70ch;            /* óptimo de lectura                 */
+  }
+
+  /* ── Focus — WCAG 2.4.7 / 2.4.11 ────────────────────────────── */
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* ── Scroll margin para anclas ───────────────────────────────── */
+  :target {
+    scroll-margin-top: 5rem;
+  }
+
+  /* ── Selección de texto con marca de color ───────────────────── */
+  ::selection {
+    background-color: var(--color-blush);
+    color: var(--color-ink);
+  }
+
+  /* ── Links ───────────────────────────────────────────────────── */
+  a {
+    color: inherit;
+    text-underline-offset: 0.2em;
+    text-decoration-skip-ink: auto;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  /* ── Formularios ─────────────────────────────────────────────── */
+  input, textarea, select, button {
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-ink-subtle);
+    opacity: 1;
+  }
+
+  /* ── Imágenes y media ────────────────────────────────────────── */
+  img, svg, video, canvas, iframe {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* ── Listas semánticas ───────────────────────────────────────── */
+  /* Solo quita estilos cuando se declara role="list".
+     Así VoiceOver/iOS sigue anunciándolas como lista. */
+  ul[role="list"],
+  ol[role="list"] {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* ── Scrollbar sutil (Webkit / Blink) ────────────────────────── */
+  ::-webkit-scrollbar          { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track    { background: transparent; }
+  ::-webkit-scrollbar-thumb    {
+    background-color: var(--color-blush-dark);
+    border-radius: var(--radius-full);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-ink-subtle);
+  }
+
+}
