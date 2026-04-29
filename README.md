@@ -1,64 +1,33 @@
-# Capri Shop
+<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=250&section=header&text=Capri%20Shop&fontSize=80&animation=fadeIn&fontAlignY=38" />
+  
+  <h3>🛍️ Plataforma de E-commerce Elegante y Moderna 👗</h3>
+</div>
 
-E-commerce monolito con frontend en Next.js 15 y backend en Node.js v24 + Express.
+---
 
-## Stack
+## 📖 Sobre el Proyecto
 
-| Capa       | Tecnología                    |
-|------------|-------------------------------|
-| Frontend   | Next.js 15, Tailwind CSS v4, TypeScript |
-| Backend    | Node.js v24, Express.js       |
-| Base de datos | PostgreSQL 16              |
-| Orquestación | Docker Compose              |
+**Capri Shop** es una tienda online completamente funcional y con un diseño exquisito, enfocada en brindar la mejor experiencia de usuario para la compra de ropa y accesorios de moda.
 
-## Estructura del proyecto
+## ✨ Características
 
-```
-capri-shop/
-├── frontend/    # Next.js 15 + Tailwind CSS
-├── backend/     # Node.js v24 + Express.js
-├── docker-compose.yml
-└── README.md
-```
+- 🛒 **Carrito Dinámico**: Agrega y elimina productos de manera fluida.
+- 🎨 **Diseño Minimalista**: Una interfaz limpia que resalta los productos.
+- 🔍 **Búsqueda y Filtros**: Encuentra fácilmente lo que buscas.
+- 💳 **Checkout Optimizado**: Proceso de compra rápido y seguro.
 
-## Inicio rápido con Docker
+## 🛠️ Tecnologías Utilizadas
 
-Asegúrate de tener Docker y Docker Compose instalados.
+<div align="center">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
+</div>
 
-```bash
-# 1. Copia los archivos de variables de entorno
-cp backend/.env.example backend/.env
-cp frontend/.env.example frontend/.env.local
+## 🚀 Despliegue
 
-# 2. Levanta todos los servicios
-docker compose up --build
-```
-
-| Servicio  | URL                             |
-|-----------|---------------------------------|
-| Frontend  | http://localhost:3000           |
-| API       | http://localhost:4000/api       |
-| Health    | http://localhost:4000/api/health |
-| PostgreSQL| localhost:5432                  |
-
-## Desarrollo local
-
-```bash
-# Backend
-cd backend
-npm install
-npm run dev
-
-# Frontend (en otra terminal)
-cd frontend
-npm install
-npm run dev
-```
-
-## Variables de entorno
-
-Ver [backend/.env.example](./backend/.env.example) y [frontend/.env.example](./frontend/.env.example).
-
-## Licencia
-
-MIT
+<div align="center">
+  <img src="https://img.shields.io/badge/Status-Active-brightgreen" />
+</div>
